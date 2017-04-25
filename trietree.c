@@ -48,27 +48,27 @@ int insertTrieTreeNode(pTrieTree root,char* str,int sl){
 
 	pTmpTreeNode = pTmpTreeNode->child;
 	if(!(pTmpTreeNode->data.d ^ str[sl])){
-		return insertTrieTreeNode(pTmpTreeNode->child,str,sl++);
+		return insertTrieTreeNode(pTmpTreeNode,str,++sl);
 	}
 
 	while(pTmpTreeNode->next != NULL){
 		pTmpTreeNode = pTmpTreeNode->next;
 		if(!(pTmpTreeNode->data.d ^ str[sl]))
-			return insertTrieTreeNode(pTmpTreeNode->child,str,sl++);
+			return insertTrieTreeNode(pTmpTreeNode,str,++sl);
 	}
 
-	pTmpTreeNode->next = construct(str,sl++);
+	pTmpTreeNode->next = construct(str,sl);
 	return 1;
 
 }
 
 int ergodicTrieTreenode(pTrieTree root){
 	if(root->child !=NULL){
-		printf("%c",root->child->data.d);
+		printf("child:%c\n",root->child->data.d);
 		ergodicTrieTreenode(root->child);
 	}
 	if(root->next !=NULL){
-		printf("%c",root->next->data.d);
+		printf("next:%c\n",root->next->data.d);
 		ergodicTrieTreenode(root->next);
 	}
 	return 1;
